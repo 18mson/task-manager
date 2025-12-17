@@ -11,7 +11,6 @@ A simple and intuitive task management application built with modern web technol
 - **Routing**: React Router DOM
 - **Icons**: Lucide React
 - **Notifications**: React Hot Toast
-- **Mock Data**: Faker.js
 - **Linting**: ESLint with TypeScript support
 
 ## Installation
