@@ -1,16 +1,15 @@
-import { faker } from '@faker-js/faker';
-
 export type DummyUser = { email: string; password: string };
 
-export function getDummyUsers(count: number = 5): DummyUser[] {
-  const stored = localStorage.getItem('dummyUsers');
-  if (stored) return JSON.parse(stored);
-  const users = Array.from({ length: count }, () => ({
-    email: faker.internet.email(),
-    password: faker.internet.password(),
-  }));
-  localStorage.setItem('dummyUsers', JSON.stringify(users));
-  return users;
+const FIXED_DUMMY_USERS: DummyUser[] = [
+  { email: 'alice@example.com', password: 'password123' },
+  { email: 'bob@example.com', password: 'password123' },
+  { email: 'charlie@example.com', password: 'password123' },
+  { email: 'diana@example.com', password: 'password123' },
+  { email: 'eve@example.com', password: 'password123' },
+];
+
+export function getDummyUsers(): DummyUser[] {
+  return FIXED_DUMMY_USERS;
 }
 
 export function showDummyUsers(): DummyUser[] {

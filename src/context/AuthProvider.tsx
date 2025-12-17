@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { AuthContext, type User } from './context';
+import { getDummyUsers } from '../lib/faker';
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -14,6 +15,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const ls = localStorage.getItem('users');
     return ls ? JSON.parse(ls) : [];
   };
+
+  useEffect(() => {
+    const users = getUsers();
+    if (users.length === 0) {
+      const dummies = getDummyUsers();
+      localStorage.setItem('users', JSON.stringify(dummies));
+    }
+  }, []);
 
   const login = (email: string, password: string): boolean => {
     const users = getUsers();
