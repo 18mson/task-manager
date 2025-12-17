@@ -20,7 +20,7 @@ export const Button = ({ children, onClick, type = "button", variant = "primary"
     <button
       type={type}
       onClick={onClick}
-      className={`rounded ${variantClass} ${sizeClass} text-gray transition-colors ${className}`}
+      className={`rounded ${variantClass} ${sizeClass} text-gray transition-colors cursor-pointer ${className}`}
       title={title}
     >
       {children}

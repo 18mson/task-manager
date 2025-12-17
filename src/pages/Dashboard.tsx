@@ -75,7 +75,7 @@ export default function Dashboard() {
     <div className="bg-linear-to-br from-blue-50 to-gray-100 min-h-screen">
 
       <div className="p-4 max-w-md lg:max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 bg-white p-4 rounded shadow">
           <div className="flex items-center">
             <CheckSquare className="text-blue-600 mr-3" size={32} />
             <div>
@@ -88,7 +88,7 @@ export default function Dashboard() {
           </Button>
         </div>
         <Button variant="primary" onClick={openAddModal}>Add Task</Button>
-        <div className="flex gap-2 mb-6 border-b border-gray-200">
+        <div className="flex gap-2 mb-6 border-b border-gray-200 bg-white mt-4 rounded shadow">
           <button
             onClick={() => setFilter('all')}
             className={`px-4 py-2 font-medium transition-colors ${
