@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import Input from '../components/Input';
 import { useAuth } from '../hooks/useAuth';
+import { CheckSquare } from 'lucide-react';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -37,13 +38,25 @@ export default function Register() {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <form className="bg-white p-6 rounded shadow-md min-w-[320px] flex flex-col gap-4" onSubmit={handleRegister}>
-        <h2 className="text-2xl font-bold text-center">Register</h2>
+      <form className="bg-white p-6 rounded shadow-md w-full max-w-md flex flex-col gap-4" onSubmit={handleRegister}>
+        <div className="flex items-center justify-center">
+          <CheckSquare className="text-blue-600 mr-2" size={32} />
+          <h1 className="text-3xl font-bold text-gray-900">TaskMaster</h1>
+        </div>
+
+        <h2 className="text-xl font-semibold text-gray-900 mb-6 text-center">
+          Create Account
+        </h2>
         <Input placeholder="Email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
         <Input placeholder="Password" type="password" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
         {error && <div className="text-red-500 text-sm">{error}</div>}
         <Button type="submit">Register</Button>
-        <Button type="button" variant="secondary" onClick={() => navigate('/login')}>Go to Login</Button>
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Already have an account?{' '}
+          <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+            Sign in
+          </Link>
+        </p>
       </form>
     </div>
   );
