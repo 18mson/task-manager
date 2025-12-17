@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# TaskMaster
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive task management application built with modern web technologies. TaskMaster allows users to create, edit, delete, and track their tasks with an easy-to-use interface.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend Framework**: React 19
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router DOM
+- **Icons**: Lucide React
+- **Notifications**: React Hot Toast
+- **Mock Data**: Faker.js
+- **Linting**: ESLint with TypeScript support
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd task-manager
+   ```
 
-## Expanding the ESLint configuration
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+4. Open your browser and navigate to `http://localhost:5173`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Usage
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Authentication
+- **Register**: Create a new account using the register page.
+- **Login**: Use existing credentials to log in.
+- For testing purposes, dummy users are provided on the login page. You can use any of the listed email/password combinations to log in.
+
+### Managing Tasks
+- **Add Task**: Click the "Add Task" button to create a new task with a title and description.
+- **Edit Task**: Click the edit icon on any task to modify its title and description.
+- **Delete Task**: Click the delete icon and confirm to remove a task.
+- **Toggle Completion**: Click the checkbox to mark a task as completed or incomplete.
+- **Filter Tasks**: Use the filter buttons (All, Active, Completed) to view tasks by status.
+
+### Features
+- Responsive design that works on desktop and mobile devices.
+- Real-time task filtering and counting.
+- Toast notifications for user feedback.
+- Protected routes requiring authentication.
+
+## File Structure
+
+```
+task-manager/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── Button.tsx
+│   │   ├── ConfirmModal.tsx
+│   │   ├── Input.tsx
+│   │   ├── TaskItem.tsx
+│   │   └── TaskModal.tsx
+│   ├── context/
+│   │   ├── AuthProvider.tsx
+│   │   └── context.ts
+│   ├── hooks/
+│   │   └── useAuth.ts
+│   ├── lib/
+│   │   └── faker.ts
+│   ├── pages/
+│   │   ├── Dashboard.tsx
+│   │   ├── Login.tsx
+│   │   └── Register.tsx
+│   ├── routes/
+│   │   └── ProtectedRoute.tsx
+│   ├── types/
+│   │   └── task.ts
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `npm run dev`: Start the development server
+- `npm run build`: Build the project for production
+- `npm run lint`: Run ESLint for code linting
+- `npm run preview`: Preview the production build locally
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.

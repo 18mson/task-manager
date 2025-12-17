@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import TaskItem from "../components/TaskItem"
 import TaskModal from "../components/TaskModal"
 import ConfirmModal from "../components/ConfirmModal"
@@ -6,8 +7,11 @@ import type { Task } from "../types/task"
 import { Button } from "../components/Button"
 import toast from "react-hot-toast"
 import { CheckSquare } from "lucide-react"
+import { useAuth } from "../hooks/useAuth"
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([])
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -62,19 +66,24 @@ export default function Dashboard() {
     toast.success('Task deleted');
   };
 
+  const handleSignOut = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <div className="bg-linear-to-br from-blue-50 to-gray-100 min-h-screen">
 
-      <div className="p-4 max-w-md mx-auto">
+      <div className="p-4 max-w-md lg:max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
             <CheckSquare className="text-blue-600 mr-3" size={32} />
             <div>
               <h1 className="text-3xl font-bold text-gray-900">TaskMaster</h1>
-              <p className="text-sm text-gray-600">{localStorage.getItem('sessionUser')}</p>
+              <p className="text-sm text-gray-600">{user}</p>
             </div>
           </div>
-          <Button variant="secondary" size="sm" onClick={()=> {}}>
+          <Button variant="secondary" size="sm" onClick={handleSignOut}>
             Sign Out
           </Button>
         </div>
@@ -116,7 +125,7 @@ export default function Dashboard() {
           <TaskItem
             key={task.id}
             task={task}
-            onToggle={id => setTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t))}
+            onToggle={(id: number, completed: boolean) => setTasks(tasks.map(t => t.id === id ? { ...t, completed: !completed, updatedAt: new Date() } : t))}
             onEdit={openEditModal}
             onDelete={handleDelete}
           />

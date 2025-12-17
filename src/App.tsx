@@ -4,10 +4,11 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
 import { ProtectedRoute } from "./routes/ProtectedRoute"
+import { AuthProvider } from "./context/AuthProvider"
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Toaster position="top-right" />
       <BrowserRouter>
         <Routes>
@@ -23,7 +24,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   )
 }
 
