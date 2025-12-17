@@ -4,6 +4,7 @@ import { Button } from "../components/Button";
 import Input from "../components/Input";
 import { showDummyUsers } from "../lib/faker";
 import { useAuth } from "../hooks/useAuth";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +35,16 @@ export default function Login() {
       <form className="bg-white p-6 rounded shadow-md min-w-[320px] flex flex-col gap-4" onSubmit={handleLogin}>
         <h2 className="text-2xl font-bold text-center">Login</h2>
         <Input placeholder="Email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
-        <Input placeholder="Password" type="password" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
+        <div className="relative">
+          <Input placeholder="Password" type={showPassword ? "text" : "password"} value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
+          <button
+            type="button"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
         {error && <div className="text-red-500 text-sm">{error}</div>}
         <Button type="submit">Login</Button>
         <Button type="button" variant="secondary" onClick={() => navigate('/register')}>Go to Register</Button>
